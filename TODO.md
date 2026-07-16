@@ -2,10 +2,10 @@
 
 ## Phase 1 プロジェクト準備
 
-- [ ] GitHubリポジトリ作成
-- [ ] GitHub Flow用の初期ブランチ運用開始
+- [×] GitHubリポジトリ作成
+- [×] GitHub Flow用の初期ブランチ運用開始
 - [ ] README作成
-- [ ] PROJECT.md作成
+- [×] PROJECT.md作成
 - [ ] 開発環境準備
 
 ---
