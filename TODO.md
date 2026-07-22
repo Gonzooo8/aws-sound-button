@@ -6,13 +6,13 @@
 - [×] GitHub Flow用の初期ブランチ運用開始
 - [ ] README作成
 - [×] PROJECT.md作成
-- [ ] 開発環境準備
+- [×] 開発環境準備
 
 ---
 
 ## Phase 2 インフラ構築（Terraform）
 
-- [ ] Terraform初期設定
+- [×] Terraform初期設定
 - [ ] VPC作成
 - [ ] Public Subnet作成
 - [ ] Internet Gateway作成

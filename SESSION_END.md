@@ -2,19 +2,32 @@
 
 ## 今日やったこと
 
-- GitHubリポジトリ作成
-- Git初期設定
-- GitHubとの接続確認
-- 初回コミット・Push
-- GitHub Flow運用開始
-- 開発用ドキュメント（PROJECT.md・TODO.md・SESSION_END.md）の運用方針決定
+- Terraformインストール確認
+- Terraform初期化
+- AWS CLI設定
+- IAMグループ
+- IAMユーザー
+- Access Key
+- terraform plan成功
+
+## 作成済みファイル
+
+- provider.tf
+- versions.tf
+- variables.tf
+
+## 動作確認
+
+- terraform init 成功
+- terraform validate 成功
+- terraform plan 成功
 
 ## 次回やること
 
-- Terraform初期設定
-- Terraformディレクトリ構成作成
-- AWS認証設定
-- VPC作成開始
+- VPC作成
+- Public Subnet作成
+- Internet Gateway作成
+- Route Table作成
 
 ## 現在のブランチ
 
