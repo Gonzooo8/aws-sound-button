@@ -18,8 +18,8 @@
 - [x] Internet Gateway作成
 - [x] Route Table作成
 - [x] Security Group作成
-- [ ] IAMロール作成
-- [ ] EC2作成
+- [x] IAMロール作成
+- [x] EC2作成
 
 ---
 
