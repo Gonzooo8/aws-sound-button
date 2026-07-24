@@ -18,6 +18,8 @@ venv/
 *.tfstate
 *.tfstate.*
 crash.log
+.terraformrc
+terraform.rc
 
 # Logs
 *.log

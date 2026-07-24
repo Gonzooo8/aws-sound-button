@@ -2,35 +2,39 @@
 
 ## 今日やったこと
 
-- GitHubリポジトリ作成
-- Git初期設定
-- GitHubとの接続確認
-- 初回コミット・Push
-- GitHub Flow運用開始
-- 開発用ドキュメント（PROJECT.md・TODO.md・SESSION_END.md）の運用方針決定
+- TerraformでAWS基盤構築
+- VPC作成
+- Public Subnet作成
+- Internet Gateway作成
+- Route Table作成
+- Security Group作成
+- IAM Role・Instance Profile作成
+- EC2（Amazon Linux 2023 / t3.nano）作成
+- terraform fmt・validate・plan・apply 実施
+- EC2へSSH接続確認
+- GitHubへPush
+- Pull Request #2 作成
 
 ## 次回やること
 
-- Terraform初期設定
-- Terraformディレクトリ構成作成
-- AWS認証設定
-- VPC作成開始
+- Pull Request内容を最終確認
+- Pull Requestをマージ
+- featureブランチ削除
+- mainブランチへ反映
+- 次のIssue作成
+- Docker環境構築開始
 
 ## 現在のブランチ
 
-main
+feature/1-terraform-infrastructure
 
 ## 次回再開手順
 
 1. PROJECT.mdを確認
 2. TODO.mdを確認
 3. SESSION_END.mdを確認
-4. Terraform作業タブを開く
-5. Terraform初期設定から開始
+4. Pull Request #2 の状態を確認
+5. マージ後、mainブランチへ切り替えて最新を取得
+6. 次のIssueから作業開始
 
 ## メモ
-
-- 作業は機能ごとにタブを分ける
-- このタブをメインタブとして全体管理を行う
-- 作業タブでは最初にPROJECT.md・TODO.md・SESSION_END.mdを確認する
-- ファイルに記載済みの内容は再質問しない

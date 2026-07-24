@@ -104,14 +104,16 @@ S3（音声ファイル）
 
 - フロントはHTML/CSS/JavaScript
 - DynamoDBには押下回数のみ保存
-- GitHub Flowで運用
-  - Issue作成
-  - Feature Branch作成
-  - Commit
-  - Pull Request
-  - Merge
-  - Issue Close
 - AWSインフラエンジニアとして評価されやすく、面接で説明しやすい構成を優先する。
+- ### GitHub Flow運用ルール
+- mainブランチへ直接コミットしない
+- 作業開始前にIssueを作成する
+- Issueごとに feature/xxx ブランチを作成する
+- 作業はfeatureブランチで行う
+- 作業完了後にCommit・Pushする
+- Pull Requestを作成する
+- 内容を確認してMergeする
+- Merge後にIssueをCloseする
 
 ## 6. 最終フェーズ
 
