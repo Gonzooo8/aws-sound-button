@@ -27,3 +27,11 @@ terraform.rc
 # OS
 .DS_Store
 Thumbs.db
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Coverage
+.coverage
+htmlcov/
