@@ -35,3 +35,4 @@ Thumbs.db
 # Coverage
 .coverage
 htmlcov/
+SESSION_END.md
