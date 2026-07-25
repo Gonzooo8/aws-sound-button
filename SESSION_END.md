@@ -2,39 +2,47 @@
 
 ## 今日やったこと
 
-- TerraformでAWS基盤構築
-- VPC作成
-- Public Subnet作成
-- Internet Gateway作成
-- Route Table作成
-- Security Group作成
-- IAM Role・Instance Profile作成
-- EC2（Amazon Linux 2023 / t3.nano）作成
-- terraform fmt・validate・plan・apply 実施
-- EC2へSSH接続確認
-- GitHubへPush
-- Pull Request #2 作成
+- Issue #3「Docker・FastAPI開発環境構築」を実施
+- `feature/3-docker-fastapi` ブランチを作成
+- FastAPI最小アプリを作成
+- `requirements.txt` を作成
+- `Dockerfile` を作成
+- `docker-compose.yml` を作成
+- `docker compose up` でコンテナ起動を確認
+- `http://localhost:8000` からFastAPIへアクセスできることを確認
+- Docker・FastAPI関連ファイルをCommit・Push
+- Pull Request #10を作成
+- Pull Request #10の変更内容を確認
 
 ## 次回やること
 
-- Pull Request内容を最終確認
-- Pull Requestをマージ
-- featureブランチ削除
-- mainブランチへ反映
-- 次のIssue作成
-- Docker環境構築開始
+- 次のIssueの内容と完了条件を確認
+- 次のIssue用のfeatureブランチを作成
+- Phase 3の次の作業タブを開始
+- 現在のIssueの範囲内で作業を進める
 
 ## 現在のブランチ
 
-feature/1-terraform-infrastructure
+feature/3-docker-fastapi
 
 ## 次回再開手順
 
 1. PROJECT.mdを確認
 2. TODO.mdを確認
 3. SESSION_END.mdを確認
-4. Pull Request #2 の状態を確認
-5. マージ後、mainブランチへ切り替えて最新を取得
-6. 次のIssueから作業開始
+4. GitHubで次のIssueの内容と完了条件を確認
+5. mainブランチが最新であることを確認
+6. 次のIssue用のfeatureブランチを作成
+7. 次のIssueの作業タブを開始
+8. Issueのスコープ内で一工程ずつ作業する
 
 ## メモ
+
+- Pull Request #10はIssue #3に対応
+- PR本文の `Closes #3` により、Merge時にIssue #3が自動でCloseされる予定
+- Pull Request #10のMerge、mainへの反映、featureブランチ削除はこのタブで実施する
+- FastAPIはDockerコンテナ内の8000番ポートで起動
+- ローカルでは `http://localhost:8000` からアクセス可能
+- コンテナの起動は `docker compose up -d`
+- コンテナの状態確認は `docker compose ps`
+- コンテナの停止・削除は `docker compose down`
