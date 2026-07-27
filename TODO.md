@@ -25,9 +25,9 @@
 
 ## Phase 3 サーバー・Webアプリ
 
-- [ ] Docker導入
-- [ ] Docker Compose構築
-- [ ] FastAPI構築
+- [x] Docker導入
+- [x] Docker Compose構築
+- [x] FastAPI構築
 - [ ] Webページ作成（HTML / CSS / JavaScript）
 - [ ] Nginx構築
 
