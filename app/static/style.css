@@ -22,6 +22,7 @@ body {
 .button-area {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   perspective: 900px;
@@ -88,6 +89,17 @@ body {
 .sound-button:focus-visible {
   outline: 4px solid #ffffff;
   outline-offset: 12px;
+}
+
+.count-text {
+  margin: 52px 0 0;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#button-count {
+  font-size: 28px;
 }
 
 @media (max-width: 600px) {

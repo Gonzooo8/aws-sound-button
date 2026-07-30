@@ -106,21 +106,6 @@ resource "aws_iam_instance_profile" "ec2" {
   role = aws_iam_role.ec2.name
 }
 
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-2023.*-x86_64"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 resource "aws_key_pair" "ec2" {
   key_name   = "${var.project_name}-key"
   public_key = file(pathexpand("~/.ssh/id_ed25519.pub"))
@@ -131,7 +116,7 @@ resource "aws_key_pair" "ec2" {
 }
 
 resource "aws_instance" "web" {
-  ami                    = data.aws_ami.amazon_linux.id
+  ami                    = var.ec2_ami_id
   instance_type          = "t3.nano"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.web.id]
@@ -147,5 +132,20 @@ resource "aws_instance" "web" {
 
   tags = {
     Name = "${var.project_name}-web"
+  }
+}
+
+resource "aws_dynamodb_table" "button_count" {
+  name         = "${var.project_name}-button-count"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+
+  tags = {
+    Name = "${var.project_name}-button-count"
   }
 }

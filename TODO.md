@@ -28,15 +28,15 @@
 - [x] Docker導入
 - [x] Docker Compose構築
 - [x] FastAPI構築
-- [ ] Webページ作成（HTML / CSS / JavaScript）
-- [ ] Nginx構築
+- [x] Webページ作成（HTML / CSS / JavaScript）
+- [x] Nginx構築
 
 ---
 
 ## Phase 4 AWSサービス
 
 - [ ] S3作成
-- [ ] DynamoDB作成
+- [x] DynamoDB作成
 - [ ] CloudWatch設定
 
 ---
