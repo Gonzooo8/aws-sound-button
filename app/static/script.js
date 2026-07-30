@@ -11,7 +11,7 @@ async function loadCount() {
 loadCount();
 
 soundButton.addEventListener("click", async () => {
-  const sound = new Audio("/static/audio/duck-toy-sound.mp3");
+  const sound = new Audio("/api/audio");
 
   sound.play().catch((error) => {
     console.error("音声を再生できませんでした。", error);

@@ -2,7 +2,7 @@ from pathlib import Path
 
 import boto3
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
@@ -11,9 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent
 
 AWS_REGION = "ap-northeast-1"
 DYNAMODB_TABLE_NAME = "aws-sound-button-button-count"
+S3_BUCKET_NAME = "aws-sound-button-audio-392789867247"
+S3_AUDIO_KEY = "audio/duck-toy-sound.mp3"
 
 dynamodb = boto3.resource("dynamodb", region_name=AWS_REGION)
 button_count_table = dynamodb.Table(DYNAMODB_TABLE_NAME)
+s3 = boto3.client("s3", region_name=AWS_REGION)
 
 app.mount(
     "/static",
@@ -56,3 +59,16 @@ def increment_count():
     )
 
     return {"count": int(response["Attributes"]["count"])}
+
+
+@app.get("/api/audio")
+def get_audio():
+    response = s3.get_object(
+        Bucket=S3_BUCKET_NAME,
+        Key=S3_AUDIO_KEY,
+    )
+
+    return StreamingResponse(
+        response["Body"],
+        media_type=response.get("ContentType", "audio/mpeg"),
+    )

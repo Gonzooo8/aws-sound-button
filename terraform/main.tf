@@ -101,6 +101,27 @@ resource "aws_iam_role" "ec2" {
   }
 }
 
+resource "aws_iam_role_policy" "ec2_s3_audio_read" {
+  name = "${var.project_name}-ec2-s3-audio-read"
+  role = aws_iam_role.ec2.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:GetObject",
+        ]
+
+        Resource = "${aws_s3_bucket.audio.arn}/audio/*"
+      }
+    ]
+  })
+}
+
 resource "aws_iam_instance_profile" "ec2" {
   name = "${var.project_name}-ec2-instance-profile"
   role = aws_iam_role.ec2.name
@@ -147,5 +168,15 @@ resource "aws_dynamodb_table" "button_count" {
 
   tags = {
     Name = "${var.project_name}-button-count"
+  }
+}
+
+data "aws_caller_identity" "current" {}
+
+resource "aws_s3_bucket" "audio" {
+  bucket = "${var.project_name}-audio-${data.aws_caller_identity.current.account_id}"
+
+  tags = {
+    Name = "${var.project_name}-audio"
   }
 }

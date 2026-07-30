@@ -35,7 +35,7 @@
 
 ## Phase 4 AWSサービス
 
-- [ ] S3作成
+- [x] S3作成
 - [x] DynamoDB作成
 - [ ] CloudWatch設定
 
