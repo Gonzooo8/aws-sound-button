@@ -37,7 +37,7 @@
 
 - [x] S3作成
 - [x] DynamoDB作成
-- [ ] CloudWatch設定
+- [x] CloudWatch設定
 
 ---
 
