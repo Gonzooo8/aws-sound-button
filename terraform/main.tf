@@ -57,6 +57,14 @@ resource "aws_security_group" "web" {
   }
 
   ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     description = "SSH from my IP"
     from_port   = 22
     to_port     = 22
@@ -134,7 +142,7 @@ resource "aws_iam_instance_profile" "ec2" {
 
 resource "aws_key_pair" "ec2" {
   key_name   = "${var.project_name}-key"
-  public_key = file(pathexpand("~/.ssh/id_ed25519.pub"))
+  public_key = file(pathexpand("~/.ssh/aws-sound-button-recovery.pub"))
 
   tags = {
     Name = "${var.project_name}-key"
@@ -174,6 +182,26 @@ resource "aws_dynamodb_table" "button_count" {
   tags = {
     Name = "${var.project_name}-button-count"
   }
+}
+
+resource "aws_iam_role_policy" "ec2_dynamodb_button_count" {
+  name = "${var.project_name}-ec2-dynamodb-button-count"
+  role = aws_iam_role.ec2.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:UpdateItem"
+        ]
+        Resource = aws_dynamodb_table.button_count.arn
+      }
+    ]
+  })
 }
 
 data "aws_caller_identity" "current" {}
