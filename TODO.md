@@ -43,9 +43,9 @@
 
 ## Phase 5 公開
 
-- [ ] Elastic IP作成・関連付け
-- [ ] Route53設定
-- [ ] HTTPS対応（Let's Encrypt）
-- [ ] 動作確認
-- [ ] README更新
-- [ ] GitHub公開
+- [x] Elastic IP作成・関連付け
+- [x] Route53設定
+- [x] HTTPS対応（Let's Encrypt）
+- [x] 動作確認
+- [x] README更新
+- [x] GitHub公開

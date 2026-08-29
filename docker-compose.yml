@@ -14,7 +14,9 @@ services:
     container_name: aws-sound-button-nginx
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${HOME}/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - app
