@@ -213,3 +213,89 @@ resource "aws_s3_bucket" "audio" {
     Name = "${var.project_name}-audio"
   }
 }
+
+resource "aws_iam_role" "scheduler" {
+  name = "${var.project_name}-scheduler-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Principal = {
+          Service = "scheduler.amazonaws.com"
+        }
+
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+
+  tags = {
+    Name = "${var.project_name}-scheduler-role"
+  }
+}
+
+resource "aws_iam_role_policy" "scheduler_ec2_start_stop" {
+  name = "${var.project_name}-scheduler-ec2-start-stop"
+  role = aws_iam_role.scheduler.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "ec2:StartInstances",
+          "ec2:StopInstances"
+        ]
+
+        Resource = aws_instance.web.arn
+      }
+    ]
+  })
+}
+
+resource "aws_scheduler_schedule" "ec2_stop" {
+  name = "${var.project_name}-ec2-stop"
+
+  schedule_expression          = "cron(0 22 * * ? *)"
+  schedule_expression_timezone = "Asia/Tokyo"
+
+  flexible_time_window {
+    mode = "OFF"
+  }
+
+  target {
+    arn      = "arn:aws:scheduler:::aws-sdk:ec2:stopInstances"
+    role_arn = aws_iam_role.scheduler.arn
+
+    input = jsonencode({
+      InstanceIds = [aws_instance.web.id]
+    })
+  }
+}
+
+resource "aws_scheduler_schedule" "ec2_start" {
+  name = "${var.project_name}-ec2-start"
+
+  schedule_expression          = "cron(0 8 * * ? *)"
+  schedule_expression_timezone = "Asia/Tokyo"
+
+  flexible_time_window {
+    mode = "OFF"
+  }
+
+  target {
+    arn      = "arn:aws:scheduler:::aws-sdk:ec2:startInstances"
+    role_arn = aws_iam_role.scheduler.arn
+
+    input = jsonencode({
+      InstanceIds = [aws_instance.web.id]
+    })
+  }
+}

@@ -2,6 +2,7 @@ services:
   app:
     build: .
     container_name: aws-sound-button
+    restart: unless-stopped
     expose:
       - "8000"
     volumes:
@@ -12,6 +13,7 @@ services:
   nginx:
     image: nginx:alpine
     container_name: aws-sound-button-nginx
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
