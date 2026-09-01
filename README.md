@@ -10,6 +10,10 @@ AWS上に構築・公開した、シンプルなWebアプリケーションで�
 
 [https://okinawaaaaaaaaaaaaws.com](https://okinawaaaaaaaaaaaaws.com)
 
+公開時間：08:00〜22:00（JST）
+
+コスト最適化のため、22:00〜08:00はEC2を自動停止しています。
+
 HTTPアクセスはNginxによってHTTPSへリダイレクトされます。
 
 ## システム構成
@@ -53,6 +57,7 @@ CloudWatch
 - S3
 - CloudWatch
 - Route 53
+- EventBridge Scheduler
 
 ### Infrastructure / Backend
 
@@ -100,7 +105,8 @@ AWS
 │  └─ Public Subnet
 │     └─ EC2
 │
-├─ IAM Role ── Instance Profile経由でEC2に付与
+├─ IAM Role
+├─ EventBridge Scheduler ── EC2を08:00起動 / 22:00停止
 ├─ DynamoDB
 └─ S3
 ```
@@ -108,6 +114,10 @@ AWS
 EC2上ではDocker Composeを使用し、NginxとFastAPIを別コンテナで実行しています。
 
 FastAPIの8000番ポートは外部公開せず、Nginx経由でアクセスする構成です。
+
+Terraform StateはローカルPCではなくS3 Remote Backendで管理しています。
+
+S3 VersioningとState Lockを利用し、Stateの保護と複数環境からのTerraform実行を考慮した構成にしています。
 
 ## 開発フロー
 
@@ -129,6 +139,8 @@ Issue Close
 
 `main`へ直接コミットせず、Issue単位でfeatureブランチを作成して開発しました。
 
+`main`ブランチにはGitHub Rulesetsを設定し、Pull Requestを経由して変更をマージする運用にしています。
+
 ## このプロジェクトで取り組んだこと
 
 - TerraformによるInfrastructure as Code
@@ -144,6 +156,9 @@ Issue Close
 - Let's EncryptによるHTTPS化
 - GitHub Flowによる開発
 - CloudWatch Logsやアプリケーションログを利用したトラブルシューティング
+- EventBridge SchedulerによるEC2の自動停止・起動
+- S3 Remote BackendによるTerraform State管理
+- GitHub Rulesetsによるmainブランチ保護
 
 ## プロジェクトの目的
 
